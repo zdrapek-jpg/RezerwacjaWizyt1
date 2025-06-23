@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" >
+    <title>Przychodnia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" >
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<div class="container">
+    <div class ="content">
+        <h3> Przychodnia</h3>
+        <table class="styled-table">
+            <thead>
+            <tr>
+                <th>Doctor</th>
+                <th>Patient</th>
+                <th>Visits</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a th:href="@{/doctors/add}" class="table-link">fill doctor form</a></td>
+                <td><a th:href="@{/patients/add}" class="table-link">fill patient form</a></td>
+                <td><a th:href="@{/visits/add}" class="table-link">fill visit  form</a></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

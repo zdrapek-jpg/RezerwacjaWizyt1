@@ -1,0 +1,278 @@
+/* ===== Reset & Base ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #4e54c8, #8f94fb);
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ===== Header & Footer ===== */
+header, footer {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    backdrop-filter: blur(8px);
+}
+
+/* ===== Main Container ===== */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 2rem;
+}
+
+/* ===== Content Box ===== */
+.content {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3rem 4rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* ===== Heading ===== */
+.content h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px #000;
+}
+
+/* ===== Links (Register / Login) ===== */
+.content a {
+    display: inline-block;
+    margin: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.content a:hover {
+    background-color: #ffffff;
+    color: #4e54c8;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== Fade-in Animation ===== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 600px) {
+    .content {
+        padding: 2rem;
+    }
+
+    .content a {
+        display: block;
+        margin: 1rem auto;
+        width: 80%;
+    }
+}
+.btn {
+    background: #ffffff;
+    color: #4e54c8;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background: #4e54c8;
+    color: #fff;
+    transform: translateY(-2px);
+}
+.table-link {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #ff6b6b;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.table-link:hover {
+    background-color: #ff4b4b;
+}
+
+.nav-links a {
+    margin-left: 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #ffffff;
+    color: #4e54c8;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+.logo{
+    padding=3px;
+    color=#ffffff;
+    margin-left=1.5rem;
+}
+header{
+display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 0.1rem 0.2rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0 0 16px 16px;
+}button[type="submit"] {
+     display: inline-block; /* Essential for padding and transform */
+     padding: 0.8rem 1.5rem; /* Slightly more generous padding */
+     border: none;
+     border-radius: 12px; /* Consistent with other elements like content box */
+     font-size: 1.1rem;
+     font-weight: 700; /* Bolder text */
+     cursor: pointer;
+     text-decoration: none; /* In case it's used on an <a> tag */
+     color: #fff; /* White text for contrast */
+     /* Using the body gradient colors for a strong, cohesive look */
+     background: linear-gradient(to right, #4e54c8, #8f94fb); /* From body background */
+     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Soft, prominent shadow */
+     transition: all 0.3s ease; /* Smooth transitions for hover effects */
+     /* Removed width: 100%; and margin-top: 1.5rem; to allow inline appearance */
+ }
+
+ button[type="submit"]:hover {
+     transform: translateY(-4px); /* Slightly more lift on hover */
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); /* Enhanced shadow on hover */
+     background: linear-gradient(to right, #5a5edb, #9bacff); /* Slightly lighter gradient on hover */
+ }
+
+ button[type="submit"]:active {
+     transform: translateY(0); /* Press-down effect */
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+ }
+ /* Base styles for action buttons in the table (Edit, Delete) */
+ .btn { /* General button class for table actions */
+     display: inline-flex; /* Allows aligning text and potential icons */
+     align-items: center;
+     justify-content: center;
+     padding: 0.6rem 1.2rem; /* Compact padding for table cells */
+     border: none;
+     border-radius: 8px; /* Slightly less rounded than main button, still soft */
+     font-size: 0.9rem;
+     font-weight: 600;
+     cursor: pointer;
+     text-decoration: none;
+     color: #fff;
+     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Subtler shadow for small buttons */
+     transition: all 0.25s ease;
+ }
+
+ .btn:hover {
+     transform: translateY(-2px); /* Lift effect */
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+ }
+
+ .btn:active {
+     transform: translateY(0);
+     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+ }
+
+ /* Specific styles for the Edit button */
+ .btn-edit {
+     background-color: #20b2aa; /* Medium Sea Green for Edit */
+ }
+
+ .btn-edit:hover {
+     background-color: #1a9c92; /* Darker green on hover */
+ }
+
+ /* Specific styles for the Delete button */
+ .btn-delete {
+     background-color: #e74c3c; /* Flat UI Red for Delete */
+ }
+
+ .btn-delete:hover {
+     background-color: #c0392b; /* Darker red on hover */
+ }
+
+ /* Style for other links that might act as buttons (e.g., "Back to My Lists") */
+ /* If you use .content a for navigation links outside of tables, this style applies */
+ .content a.btn { /* This specifically targets links with class 'btn' inside .content */
+     background: rgba(255, 255, 255, 0.2);
+     color: #fff;
+     padding: 0.75rem 1.5rem;
+     border-radius: 8px;
+     font-weight: bold;
+     transition: all 0.3s ease;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+ }
+
+ .content a.btn:hover {
+     background: #ffffff;
+     color: #4e54c8;
+     transform: translateY(-3px);
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+ }
+ /* Styling for input fields */
+ input[type="email"],
+ input[type="password"],
+ input[type="text"],
+ input,select{
+     background-color: white; /* White background */
+      border-radius: 9999px; /* For a pill/rounded shape. 50% can be less predictable for width/height differences */
+      color: black;        /* Black text color */
+      padding: 4px 6px;   /* Added padding for better appearance */
+      min-width: 110px;    /* Minimum width to prevent it from becoming too small */
+      box-sizing: border-box; /* Include padding and border in the element's total width and height */
+      /* Important for JavaScript width adjustments: */
+      transition: width 0.1s ease-out; /* Smooth transition when resizing */
+ }
+  .auto-resize-input {
+         background-color: white; /* White background */
+         border-radius: 9999px; /* For a pill/rounded shape. 50% can be less predictable for width/height differences */
+         color: black;        /* Black text color */
+         padding: 6px 8px;   /* Added padding for better appearance */
+         min-width: 110px;    /* Minimum width to prevent it from becoming too small */
+         box-sizing: border-box; /* Include padding and border in the element's total width and height */
+         /* Important for JavaScript width adjustments: */
+         transition: width 0.1s ease-out; /* Smooth transition when resizing */
+     }
+

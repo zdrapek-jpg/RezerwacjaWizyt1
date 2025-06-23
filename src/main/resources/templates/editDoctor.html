@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  th:href="@{/css/style.css}" >
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<div class="container">
+    <div class="content">
+        <form th:action="@{/doctors/edit/{pesel}}" th:object="${doctor}" method="post">
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <input type="hidden" name="originalPesel" th:value="${doctor.pesel}" />
+                <tr>
+                    <td>PESEL:</td>
+                    <td><input type="text" th:field="*{pesel}" required/></td>
+                </tr>
+                <tr>
+                    <td>Imię:</td>
+                    <td><input type="text" th:field="*{name}" required/></td>
+                </tr>
+                <tr>
+                    <td>Nazwisko:</td>
+                    <td><input type="text" th:field="*{surname}" required/></td>
+                </tr>
+                <tr>
+                    <td>Specjalność:</td>
+                    <td>
+                        <select th:field="*{specjalnosc}" required>
+                            <option value="">-- Wybierz specjalność --</option>
+                            <option th:each="spec : ${T(com.example.RezerwacjaWizyt1.Entity.SPECJALIZACJE).values()}"
+                                    th:value="${spec.name()}"
+                                    th:text="${spec.description}">
+                                Specjalizacja
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" > Zapisz zmiany</button>
+
+        </form>
+        <a th:href="@{/doctors}" >Powrót do listy lekarzy</a>
+
+    </div>
+
+</div>
+
+<!-- Footer Placeholder (assuming it will be styled by global CSS or internal styles) -->
+<div th:replace="~{fragments :: footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  th:href="@{/css/style.css}" >
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+
+<div class="container">
+    <div class="content">
+        <h3>Add Doctor Form</h3>
+
+        <!-- Form to add a new doctor -->
+        <form th:action="@{/doctors/add}" th:object="${doctor}" method="post">
+            <table>
+                <thead>
+                <tr>
+                    <th>PESEL</th>
+                    <th>Imię</th>
+                    <th>Nazwisko</th>
+                    <th>Specjalność</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <input type="text" th:field="*{pesel}" required/>
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{name}" required/>
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{surname}" required/>
+                    </td>
+                    <td>
+                        <select th:field="*{specjalnosc}" required>
+                            <option value="">-- Wybierz specjalność --</option>
+                            <!-- Use SPECJALIZACJE enum from your Java code -->
+                            <option th:each="spec : ${T(com.example.RezerwacjaWizyt1.Entity.SPECJALIZACJE).values()}"
+                                    th:value="${spec.name()}"
+                                    th:text="${spec.description}">
+                                Specjalizacja
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <button type="submit">Zapisz lekarza</button>
+        </form>
+
+        <!-- Table to display existing doctors -->
+        <h3 class="existing-doctors-heading">Existing Doctors:</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr>
+                    <th>PESEL</th>
+                    <th>Imię i Nazwisko</th>
+                    <th>Specjalność</th>
+                    <th>Akcje</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Iterates directly on 'doctors' from the model, assuming the controller adds a List<Doctor> -->
+                <tr th:each="doctor : ${doctors}">
+                    <td th:text="${doctor.pesel}">PESEL Placeholder</td>
+                    <td>
+                        <span th:text="${doctor.name}">Imię</span> <span th:text="${doctor.surname}">Nazwisko</span>
+                    </td>
+                    <td th:text="${T(com.example.RezerwacjaWizyt1.Entity.SPECJALIZACJE).valueOf(doctor.specjalnosc).description}">Specjalność Placeholder</td>
+                    <td class="actions">
+                        <a th:href="@{|/doctors/edit/${doctor.pesel}|}" class="btn btn-edit">Edit</a>
+
+                        <a th:href="@{|/doctors/delete/${doctor.pesel}|}" class="btn btn-delete" onclick="return confirm('are you sure you want to delete item?');">Delete</a>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(doctors)}" class="no-doctors-row">
+                    <td colspan="4">No doctors found. Add one above!</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Footer Placeholder (assuming it will be styled by global CSS or internal styles) -->
+<div th:replace="~{fragments :: footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8" >
+    <title>Przychodnia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" >
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<div class="container">
+    <div class="content">
+    <h2>Add Visit</h2>
+
+        <form th:action="@{/visits/add}" th:object="${visit}" method="post">
+            <table>
+                <tr>
+                    <td>Doctor:</td>
+                    <td>
+                        <select th:field="*{doctor.pesel}" required>
+                            <option th:each="doc : ${doctors}"
+                                    th:value="${doc.pesel}"
+                                    th:text="${doc.name + ' ' + doc.surname + '  ' + doc.specjalnosc}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Patient:</td>
+                    <td>
+                        <select th:field="*{patient.pesel}" required>
+                            <option th:each="pat : ${patients}"
+                                    th:value="${pat.pesel}"
+                                    th:text="${pat.name + ' ' + pat.surname + ' ' + pat.pesel}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td><input type="date" th:field="*{visitday}" required/></td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td><input type="time" th:field="*{visithour}" required/></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><textarea th:field="*{opis}" rows="3" cols="30"></textarea></td>
+                </tr>
+            </table>
+            <button type="submit">Save Visit</button>
+        </form>
+    </div>
+</div>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

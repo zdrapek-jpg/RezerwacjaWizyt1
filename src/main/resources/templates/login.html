@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Full Stack pierwsz<3 Login</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+
+<div class="container">
+    <div class="content">
+        <h2>
+            Witajcie na Login
+        </h2>
+        <form th:action="@{/login}"  method="post">
+            <label>Email:</label>
+            <input type="email" name="username" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <button type="submit" class="btn">Login</button>
+        </form>
+
+        <p>don't have account? <a th:href="@{/register}">register</a></p>
+    </div>
+
+</div>
+<div th:replace="~{fragments :: footer}"></div>
+
+
+
+</body>
+</html>

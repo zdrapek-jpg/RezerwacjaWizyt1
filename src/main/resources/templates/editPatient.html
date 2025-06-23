@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"  th:href="@{/css/style.css}" >
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<div class="container">
+    <div class="content">
+        <form th:action="@{/patients/edit/{pesel}}" th:object="${patient}" method="post">
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <input type="hidden" name="originalPesel" th:value="${patient.pesel}" />
+                <tr>
+                    <td>PESEL:</td>
+                    <td><input type="text" th:field="*{pesel}" required/></td>
+                </tr>
+                <tr>
+                    <td>Imię:</td>
+                    <td><input type="text" th:field="*{name}" required/></td>
+                </tr>
+                <tr>
+                    <td>Nazwisko:</td>
+                    <td><input type="text" th:field="*{surname}" required/></td>
+                </tr>
+                <tr>
+                    <td>Wiek:</td>
+                    <td><input type="number" th:field="*{age}" required/> </td>
+                </tr>
+                <tr>
+                    <td>Karta:</td>
+                    <td>
+                        <input type="checkbox" th:field="*{czyPosiadaKarte}" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button type="submit" > Zapisz zmiany</button>
+
+        </form>
+        <a th:href="@{/patients}" >Powrót do listy pacjentów</a>
+    </div>
+</div>
+
+
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

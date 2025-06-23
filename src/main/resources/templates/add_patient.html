@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet"    th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: header}"></div>
+<div class="container">
+    <div class="content">
+        <h3> Add patient form content</h3>
+        <form th:action="@{/patients/add}" th:object="${patient}" method="post">
+        <table >
+            <thead>
+            <tr>
+                <th>PESEL</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Age</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" name="*{pesel}" required/></td>
+                <td><input type="text" name="*{name}"  required/></td>
+                <td><input type="text" name="*{surname}"  required /></td>
+                <td><input type ="number" name =*{age} required></td>
+
+
+                <td>
+
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+            <button type="submit">Zapisz dane pacjenta</button>
+        </form>
+        <table>
+            <thead>
+            <tr>
+                <th>Pesel</th>
+                <th>Imie</th>
+                <th>Nazwisko</th>
+                <th>wiek</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="patient: ${patients}">
+                <td th:text="${patient.pesel}">Pesel</td>
+                <td th:text="${patient.name}">Imie</td>
+                <td th:text="${patient.surname}">Nazwisko</td>
+                <td th:text="${patient.age}" >wiek</td>
+                <td class="actions">
+                    <a th:href="@{|/patients/edit/${patient.pesel}|}" class="btn btn-edit">edit</a>
+                    <a th:href="@{|/patients/delete/${patient.pesel}|}" class="btn btn-delete" onclick="return confirm('are you sure you want to delete patient?');">delete</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(patients)}" class="no-doctors-row">
+                <td colspan="4">no patient are found</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

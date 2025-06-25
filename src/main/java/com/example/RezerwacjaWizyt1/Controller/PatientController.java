@@ -37,7 +37,7 @@ public class PatientController {
     @GetMapping("/delete/{pesel}") // For production, consider using @PostMapping or a more secure method for deletion
     public String deleteDoctor(@PathVariable String pesel) {
         patientService.deletePatient(pesel);
-        return "redirect:patients"; // Redirect to the list page
+        return "redirect:/patients"; // Redirect to the list page
     }
     @GetMapping("/edit/{pesel}")
     public String showEditPatientForm(@PathVariable String pesel, Model model, RedirectAttributes redirectAttributes){

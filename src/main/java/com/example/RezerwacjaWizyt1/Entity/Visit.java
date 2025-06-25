@@ -74,4 +74,16 @@ public class Visit {
     public void setOpis(String opis) {
         this.opis = opis;
     }
+
+    @Override
+    public String toString() {
+        return "Visit{" +
+                "id=" + id +
+                ", visitday=" + visitday +
+                ", visithour=" + visithour +
+                ", doctor=" + doctor.getName() +
+                ", patient=" + patient.getName() +
+                ", opis='" + opis + '\'' +
+                '}';
+    }
 }

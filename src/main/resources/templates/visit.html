@@ -52,6 +52,37 @@
             </table>
             <button type="submit">Save Visit</button>
         </form>
+        <h4>data:</h4>
+        <div class="table-container">
+        <table class="show-table">
+            <thead>
+            <tr>
+                <th>Doctor</th>
+                <th>Patient</th>
+                <th>Date</th>
+                <th>Hour</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="visit: ${visits}">
+                <td th:text="${visit.doctor.name + ' '+visit.doctor.specjalnosc }">Doctor</td>
+                <td th:text="${visit.patient.name+ ' '+ visit.patient.surname +' '+visit.patient.age}">Patient</td>
+                <td th:text="${visit.visitday}">Date</td>
+                <td th:text="${visit.visithour}" >Hour</td>
+                <td th:text="${visit.opis}">opis</td>
+                <td class="actions">
+                    <a th:href="@{|/visits/edit/${visit.id}|}" class="btn btn-edit">edit</a>
+                    <a th:href="@{|/visits/delete/${visit.id}|}" class="btn btn-delete" onclick="return confirm('are you sure you want to delete visit?');">delete</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(visits)}" class="no-doctors-row">
+                <td colspan="4">not even one  visit was  found</td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
     </div>
 </div>
 <div th:replace="~{fragments :: footer}"></div>

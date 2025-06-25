@@ -13,7 +13,7 @@
     <div class="content">
     <h2>Edit Visit</h2>
 
-    <form th:action="@{'/visits/edit/' + ${visit.id}}" th:object="${visit}" method="post">
+    <form th:action="@{|'/visits/edit/'{visit.id}}|" th:object="${visit}" method="post">
         <table>
             <tr>
                 <td>Doctor:</td>
@@ -32,11 +32,12 @@
             <tr>
                 <td>Patient:</td>
                 <td>
+                    <input type="hidden" name="patientPesel" th:value="${visit.patient.pesel}" />
                     <select th:field="*{patient}" required>
                         <option th:each="pat : ${patients}"
-                                th:value="${pat}"
-                                th:selected="${pat.equals(visit.patient)}"
-                                th:text="${pat.name + ' ' + pat.surname  + pat.pesel}">
+                                th:value="${pat.pesel}"
+                                th:selected="${pat.pesel == visit.patient.pesel}"
+                                th:text="${pat.name + ' ' + pat.surname + ' (' + pat.pesel + ')'}">
                         </option>
                     </select>
                 </td>
@@ -56,6 +57,8 @@
         </table>
         <button type="submit">Update Visit</button>
     </form>
+        <br>
+        <a th:href="@{/visits}" > wruć <-</a>
     </div>
 </div>
 <div th:replace="~{fragments :: footer}"></div>

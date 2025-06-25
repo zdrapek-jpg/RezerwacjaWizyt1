@@ -1,6 +1,7 @@
 package com.example.RezerwacjaWizyt1.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
@@ -18,10 +19,13 @@ public class Patient {
     @NotNull
     private Long age;
 
+    @Email
+    private String email;
+
     @NotNull
     private boolean czyPosiadaKarte;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient",cascade = CascadeType.REMOVE)
     private List<Visit> visitList;
 
     public String getPesel() {
@@ -56,6 +60,14 @@ public class Patient {
         this.age = age;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public boolean isCzyPosiadaKarte() {
         return czyPosiadaKarte;
     }
@@ -68,20 +80,27 @@ public class Patient {
         return visitList;
     }
 
+    public void setVisitList(List<Visit> visitList) {
+        this.visitList = visitList;
+    }
+
     @Override
     public String toString() {
+        if (this.email==null){
+            return "Patient{" +
+                    "pesel='" + pesel + '\'' +
+                    ", name='" + name + '\'' +
+                    ", surname='" + surname + '\'' +
+                    ", age=" + age +
+                    ", czyPosiadaKarte=" + czyPosiadaKarte +'}';
+        }
         return "Patient{" +
                 "pesel='" + pesel + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", age=" + age +
-                ", czyPosiadaKarte=" + czyPosiadaKarte +
-                ", visitList=" + visitList +
-                '}';
-    }
-
-    public void setVisitList(List<Visit> visitList) {
-        this.visitList = visitList;
+                ", email='" + email + '\'' +
+                ", czyPosiadaKarte=" + czyPosiadaKarte + '}';
     }
 }
 

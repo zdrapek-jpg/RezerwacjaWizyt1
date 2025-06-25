@@ -13,21 +13,23 @@
     <div class="content">
         <h3> Add patient form content</h3>
         <form th:action="@{/patients/add}" th:object="${patient}" method="post">
-        <table >
+        <table>
             <thead>
             <tr>
                 <th>PESEL</th>
                 <th>Name</th>
                 <th>Surname</th>
+                <th>Email</th>
                 <th>Age</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td><input type="text" name="*{pesel}" required/></td>
-                <td><input type="text" name="*{name}"  required/></td>
-                <td><input type="text" name="*{surname}"  required /></td>
-                <td><input type ="number" name =*{age} required></td>
+                <td><input type="text" th:field="*{pesel}" required/></td>
+                <td><input type="text" th:field="*{name}"  required/></td>
+                <td><input type="text" th:field="*{surname}"  required /></td>
+                <td><input  type="email" th:field="*{email}" /> </td>
+                <td><input type ="number" th:field=*{age} required></td>
 
 
                 <td>
@@ -39,12 +41,14 @@
         </table>
             <button type="submit">Zapisz dane pacjenta</button>
         </form>
-        <table>
+        <div class="table-container">
+        <table class="show-table">
             <thead>
             <tr>
                 <th>Pesel</th>
                 <th>Imie</th>
                 <th>Nazwisko</th>
+                <th>Email</th>
                 <th>wiek</th>
             </tr>
             </thead>
@@ -53,6 +57,7 @@
                 <td th:text="${patient.pesel}">Pesel</td>
                 <td th:text="${patient.name}">Imie</td>
                 <td th:text="${patient.surname}">Nazwisko</td>
+                <td th:text="${email}">Email</td>
                 <td th:text="${patient.age}" >wiek</td>
                 <td class="actions">
                     <a th:href="@{|/patients/edit/${patient.pesel}|}" class="btn btn-edit">edit</a>
@@ -64,6 +69,7 @@
             </tr>
             </tbody>
         </table>
+        </div>
     </div>
 
 </div>

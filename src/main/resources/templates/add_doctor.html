@@ -22,6 +22,7 @@
                     <th>PESEL</th>
                     <th>Imię</th>
                     <th>Nazwisko</th>
+                    <th>Email</th>
                     <th>Specjalność</th>
                 </tr>
                 </thead>
@@ -35,6 +36,9 @@
                     </td>
                     <td>
                         <input type="text" th:field="*{surname}" required/>
+                    </td>
+                    <td>
+                        <input type="email" th:field="*{email}"/>
                     </td>
                     <td>
                         <select th:field="*{specjalnosc}" required>
@@ -57,11 +61,12 @@
         <!-- Table to display existing doctors -->
         <h3 class="existing-doctors-heading">Existing Doctors:</h3>
         <div class="table-container">
-            <table>
+            <table class="show-table">
                 <thead>
                 <tr>
                     <th>PESEL</th>
                     <th>Imię i Nazwisko</th>
+                    <th>Email</th>
                     <th>Specjalność</th>
                     <th>Akcje</th>
                 </tr>
@@ -73,6 +78,7 @@
                     <td>
                         <span th:text="${doctor.name}">Imię</span> <span th:text="${doctor.surname}">Nazwisko</span>
                     </td>
+                    <td th:text="${doctor.email}">email</td>
                     <td th:text="${T(com.example.RezerwacjaWizyt1.Entity.SPECJALIZACJE).valueOf(doctor.specjalnosc).description}">Specjalność Placeholder</td>
                     <td class="actions">
                         <a th:href="@{|/doctors/edit/${doctor.pesel}|}" class="btn btn-edit">Edit</a>

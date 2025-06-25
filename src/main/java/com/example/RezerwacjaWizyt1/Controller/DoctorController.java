@@ -63,22 +63,23 @@ public class DoctorController {
     }
 
     @PostMapping("/edit/{pesel}")
-    public String updateDoctor(@RequestParam("oryginalPesel")String OryginalPesel, @ModelAttribute("doctor") Doctor doctor, RedirectAttributes redirectAttributes) {
-        // Prefer using PESEL to uniquely identify doctor
-        Optional<Doctor> optionalDoctor = doctorService.findDoctorByPesel(OryginalPesel);
+    public String updateDoctor(@RequestParam("originalPesel") String oryginalPesel,
+                               @ModelAttribute("doctor") Doctor doctor,
+                               RedirectAttributes redirectAttributes) {
+        Optional<Doctor> optionalDoctor = doctorService.findDoctorByPesel(oryginalPesel);
 
         if (optionalDoctor.isPresent()) {
-            Doctor existingDoctor = optionalDoctor.get();
-            doctorService.deleteDoctor(OryginalPesel);
+            // Remove old doctor (if PESEL changed)
+            doctorService.deleteDoctor(oryginalPesel);
 
-            doctorService.addDoctor(doctor); // Save changes (rename to saveDoctor if more semantically correct)
+            // Save the updated doctor info
+            doctorService.addDoctor(doctor);
 
             redirectAttributes.addFlashAttribute("successMessage", "Dane lekarza zostały pomyślnie zaktualizowane.");
-
         }
 
         redirectAttributes.addFlashAttribute("errorMessage", "Nie znaleziono lekarza do aktualizacji.");
-        return "redirect:/doctors"; // Redirect even on failure, following Post-Redirect-Get pattern
+        return "redirect:/doctors";
     }
 
 

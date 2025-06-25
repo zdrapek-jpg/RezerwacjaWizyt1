@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Potwierdzenie Wizyty</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4e54c8; /* A blue shade */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        .details {
+            background-color: #f9f9f9;
+            border-left: 5px solid #8f94fb; /* A lighter blue/purple */
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #888888;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #4e54c8;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Potwierdzenie Umówionej Wizyty</h2>
+    <p>Szanowny/a <span class="highlight">#USER_NAME#</span>,</p>
+    <p>
+        Informujemy, że wizyta została pomyślnie umówiona. Poniżej znajdują się szczegóły:
+    </p>
+    <div class="details">
+        <p><span class="highlight">Data Wizyty:</span> #VISIT_DATE#</p>
+        <p><span class="highlight">Godzina Wizyty:</span> #VISIT_TIME#</p>
+        <p><span class="highlight">Lekarz:</span> Dr. #DOCTOR_NAME# #DOCTOR_SURNAME# (Specjalność: #DOCTOR_SPECIALIZATION#)</p>
+        <p><span class="highlight">PESEL Lekarza:</span> #DOCTOR_PESEL#</p>
+        <p><span class="highlight">Pacjent:</span> #PATIENT_NAME# #PATIENT_SURNAME#</p>
+        <p><span class="highlight">PESEL Pacjenta:</span> #PATIENT_PESEL#</p>
+    </div>
+    <p>
+        Prosimy o punktualne przybycie. W razie pytań prosimy o kontakt.
+    </p>
+    <div class="footer">
+        Dziękujemy za skorzystanie z naszych usług.
+        <br>
+        Zespół Rezerwacji Wizyt
+    </div>
+</div>
+</body>
+</html>

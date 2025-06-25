@@ -1,6 +1,7 @@
 package com.example.RezerwacjaWizyt1.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
@@ -12,26 +13,20 @@ public class Doctor {
     @Column(name="pesel",unique = true,length = 11)
     private String pesel;
 
-    @Override
-    public String toString() {
-        return "Doctor{" +
-                "pesel='" + pesel + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", specjalnosc=" + specjalnosc +
-                ", visitList=" + visitList +
-                '}';
-    }
-
     @NotNull
     private String name;
     @NotNull
     private String surname;
 
+
+    @Email
+    private String email;
+
+
     @Enumerated(EnumType.STRING)
     @Column(name = "specjalnosc", nullable = false, length = 50)
     private SPECJALIZACJE specjalnosc;
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE)
     private List<Visit> visitList;
 
     public String getPesel() {
@@ -58,6 +53,14 @@ public class Doctor {
         this.surname = surname;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public SPECJALIZACJE getSpecjalnosc() {
         return specjalnosc;
     }
@@ -72,5 +75,27 @@ public class Doctor {
 
     public void setVisitList(List<Visit> visitList) {
         this.visitList = visitList;
+    }
+
+    @Override
+    public String toString() {
+        if (this.email==null){
+            return "Doctor{" +
+                    "pesel='" + pesel + '\'' +
+                    ", name='" + name + '\'' +
+                    ", surname='" + surname + '\'' +
+                    ", specjalnosc=" + specjalnosc +
+                    ", visitList=" + visitList +
+                    '}';
+        }
+
+        return "Doctor{" +
+                "pesel='" + pesel + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", specjalnosc=" + specjalnosc +
+                ", visitList=" + visitList +
+                '}';
     }
 }
